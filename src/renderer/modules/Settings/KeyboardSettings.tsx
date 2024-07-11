@@ -591,7 +591,7 @@ function KeyboardSettings(props: KeyboardSettingsProps) {
                       <span className="tagsfix">Less</span>
                     </div>
                     <div className="w-full flex items-center p-0">
-                      <Slider min={120} max={500} value={[SuperHoldstart]} onValueChange={setSuperHoldstart} />
+                      <Slider min={1} max={500} value={[SuperHoldstart]} onValueChange={setSuperHoldstart} />
                     </div>
                     <div className="flex max-w-12 p-0 text-center items-center">
                       <span className="tagsfix">More</span>
