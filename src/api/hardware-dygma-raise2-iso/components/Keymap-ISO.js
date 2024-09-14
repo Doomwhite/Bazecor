@@ -306,13 +306,19 @@ class KeymapISO extends React.Component {
     const topsArr = ["LEDEFF.", "SCadet", "Steno", "M.Btn", "Leader", "Numpad", "Media", "OSL", "Mouse", "M.Wheel", "M.Warp"];
     const topsArrTransfer = ["SHIFTTO", "LockTo"];
     const getCenterExtra = (row, col, xCord, yCord, smallKey = false) =>
-      getLabel(row, col).extraLabel !== ""
-        ? topsArr.includes(getLabel(row, col).extraLabel)
-          ? getLabel(row, col).extraLabel && getDivideKeys(getLabel(row, col).extraLabel, xCord, yCord, smallKey)
-          : getLabel(row, col).extraLabel && getDivideKeys(getLabel(row, col).extraLabel, xCord, String(+yCord - 5), smallKey)
-        : getLabel(row, col).extraLabel === getLabel(row, col).extraLabel.toLowerCase().endsWith("to")
-          ? getLabel(row, col).extraLabel && getDivideKeys(getLabel(row, col).extraLabel, xCord, yCord, smallKey)
+      React.isValidElement(getLabel(row, col).extraLabel)
+        ? getLabel(row, col).extraLabel
+        : getLabel(row, col).extraLabel?.includes("+")
+          ? ""
           : getLabel(row, col).extraLabel;
+    // const getCenterExtra = (row, col, xCord, yCord, smallKey = false) =>
+    //   getLabel(row, col).extraLabel !== ""
+    //     ? topsArr.includes(getLabel(row, col).extraLabel)
+    //       ? getLabel(row, col).extraLabel && getDivideKeys(getLabel(row, col).extraLabel, xCord, yCord, smallKey)
+    //       : getLabel(row, col).extraLabel && getDivideKeys(getLabel(row, col).extraLabel, xCord, String(+yCord - 5), smallKey)
+    //     : getLabel(row, col).extraLabel === getLabel(row, col).extraLabel.toLowerCase().endsWith("to")
+    //       ? getLabel(row, col).extraLabel && getDivideKeys(getLabel(row, col).extraLabel, xCord, yCord, smallKey)
+    //       : getLabel(row, col).extraLabel;
 
     const getCenterPrimary = (row, col, xCord, yCord, smallKey = false) =>
       getLabel(row, col).extraLabel !== ""
@@ -340,23 +346,6 @@ class KeymapISO extends React.Component {
         height={showUnderglow || isStandardView ? 705 : 480}
         width={1222}
       >
-        <Neuron
-          selectedLED={selectedLED}
-          visibility={!!(showUnderglow || isStandardView)}
-          clickAble={!(isStandardView && !showUnderglow)}
-          color="#b4b4b4"
-          id="neuron_led"
-          onClick={e => {
-            setUndeglowIndex(144, e);
-          }}
-          className="key"
-          fill={getColor(144)}
-          stroke={stroke(144)}
-          strokeWidth={getStrokeWidth(144)}
-          dataLedIndex={getLEDIndex(144)}
-          dataKeyIndex={keyIndex(144)}
-          dataLayer={layer}
-        />
         <g id="keyshapes">
           <Key
             keyType="regularKey"
@@ -376,6 +365,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 0))}
             centerPrimary={getCenterPrimary(0, 0, 0, 0, true)}
             centerExtra={getCenterExtra(0, 0, 0, 0, true)}
+            keyCode={getLabel(0, 0).keyCode}
+            selectedKey={getLabel(0, 0)}
           />
           <Key
             keyType="regularKey"
@@ -395,6 +386,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 1))}
             centerPrimary={getCenterPrimary(0, 1, 0, 0, true)}
             centerExtra={getCenterExtra(0, 1, 0, 0, true)}
+            keyCode={getLabel(0, 1).keyCode}
+            selectedKey={getLabel(0, 1)}
           />
           <Key
             keyType="regularKey"
@@ -414,6 +407,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 2))}
             centerPrimary={getCenterPrimary(0, 2, 0, 0, true)}
             centerExtra={getCenterExtra(0, 2, 0, 0, true)}
+            keyCode={getLabel(0, 2).keyCode}
+            selectedKey={getLabel(0, 2)}
           />
           <Key
             keyType="regularKey"
@@ -433,6 +428,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 3))}
             centerPrimary={getCenterPrimary(0, 3, 0, 0, true)}
             centerExtra={getCenterExtra(0, 3, 0, 0, true)}
+            keyCode={getLabel(0, 3).keyCode}
+            selectedKey={getLabel(0, 3)}
           />
           <Key
             keyType="regularKey"
@@ -452,6 +449,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 4))}
             centerPrimary={getCenterPrimary(0, 4, 0, 0, true)}
             centerExtra={getCenterExtra(0, 4, 0, 0, true)}
+            keyCode={getLabel(0, 4).keyCode}
+            selectedKey={getLabel(0, 4)}
           />
           <Key
             keyType="regularKey"
@@ -471,6 +470,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 5))}
             centerPrimary={getCenterPrimary(0, 5, 0, 0, true)}
             centerExtra={getCenterExtra(0, 5, 0, 0, true)}
+            keyCode={getLabel(0, 5).keyCode}
+            selectedKey={getLabel(0, 5)}
           />
           <Key
             keyType="regularKey"
@@ -490,6 +491,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 6))}
             centerPrimary={getCenterPrimary(0, 6, 0, 0, true)}
             centerExtra={getCenterExtra(0, 6, 0, 0, true)}
+            keyCode={getLabel(0, 6).keyCode}
+            selectedKey={getLabel(0, 6)}
           />
           <Key
             keyType="regularKey"
@@ -509,6 +512,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 9))}
             centerPrimary={getCenterPrimary(0, 9, 0, 0, true)}
             centerExtra={getCenterExtra(0, 9, 0, 0, true)}
+            keyCode={getLabel(0, 9).keyCode}
+            selectedKey={getLabel(0, 9)}
           />
           <Key
             keyType="regularKey"
@@ -528,6 +533,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 10))}
             centerPrimary={getCenterPrimary(0, 10, 0, 0, true)}
             centerExtra={getCenterExtra(0, 10, 0, 0, true)}
+            keyCode={getLabel(0, 10).keyCode}
+            selectedKey={getLabel(0, 10)}
           />
           <Key
             keyType="regularKey"
@@ -547,6 +554,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 11))}
             centerPrimary={getCenterPrimary(0, 11, 0, 0, true)}
             centerExtra={getCenterExtra(0, 11, 0, 0, true)}
+            keyCode={getLabel(0, 11).keyCode}
+            selectedKey={getLabel(0, 11)}
           />
           <Key
             keyType="regularKey"
@@ -566,6 +575,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 12))}
             centerPrimary={getCenterPrimary(0, 12, 0, 0, true)}
             centerExtra={getCenterExtra(0, 12, 0, 0, true)}
+            keyCode={getLabel(0, 12).keyCode}
+            selectedKey={getLabel(0, 12)}
           />
           <Key
             keyType="regularKey"
@@ -585,6 +596,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 13))}
             centerPrimary={getCenterPrimary(0, 13, 0, 0, true)}
             centerExtra={getCenterExtra(0, 13, 0, 0, true)}
+            keyCode={getLabel(0, 13).keyCode}
+            selectedKey={getLabel(0, 13)}
           />
           <Key
             keyType="regularKey"
@@ -604,6 +617,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 14))}
             centerPrimary={getCenterPrimary(0, 14, 0, 0, true)}
             centerExtra={getCenterExtra(0, 14, 0, 0, true)}
+            keyCode={getLabel(0, 14).keyCode}
+            selectedKey={getLabel(0, 14)}
           />
           <Key
             keyType="regularKey"
@@ -623,6 +638,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(0, 15))}
             centerPrimary={getCenterPrimary(0, 15, 0, 0, true)}
             centerExtra={getCenterExtra(0, 15, 0, 0, true)}
+            keyCode={getLabel(0, 15).keyCode}
+            selectedKey={getLabel(0, 15)}
           />
           <Key
             keyType="regularKey"
@@ -642,6 +659,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 0))}
             centerPrimary={getCenterPrimary(1, 0, 0, 0, true)}
             centerExtra={getCenterExtra(1, 0, 0, 0, true)}
+            keyCode={getLabel(1, 0).keyCode}
+            selectedKey={getLabel(1, 0)}
           />
           <Key
             keyType="regularKey"
@@ -661,6 +680,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 1))}
             centerPrimary={getCenterPrimary(1, 1, 0, 0, true)}
             centerExtra={getCenterExtra(1, 1, 0, 0, true)}
+            keyCode={getLabel(1, 1).keyCode}
+            selectedKey={getLabel(1, 1)}
           />
           <Key
             keyType="regularKey"
@@ -680,6 +701,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 2))}
             centerPrimary={getCenterPrimary(1, 2, 0, 0, true)}
             centerExtra={getCenterExtra(1, 2, 0, 0, true)}
+            keyCode={getLabel(1, 2).keyCode}
+            selectedKey={getLabel(1, 2)}
           />
           <Key
             keyType="regularKey"
@@ -699,6 +722,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 3))}
             centerPrimary={getCenterPrimary(1, 3, 0, 0, true)}
             centerExtra={getCenterExtra(1, 3, 0, 0, true)}
+            keyCode={getLabel(1, 3).keyCode}
+            selectedKey={getLabel(1, 3)}
           />
           <Key
             keyType="regularKey"
@@ -718,6 +743,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 4))}
             centerPrimary={getCenterPrimary(1, 4, 0, 0, true)}
             centerExtra={getCenterExtra(1, 4, 0, 0, true)}
+            keyCode={getLabel(1, 4).keyCode}
+            selectedKey={getLabel(1, 4)}
           />
           <Key
             keyType="regularKey"
@@ -737,6 +764,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 5))}
             centerPrimary={getCenterPrimary(1, 5, 0, 0, true)}
             centerExtra={getCenterExtra(1, 5, 0, 0, true)}
+            keyCode={getLabel(1, 5).keyCode}
+            selectedKey={getLabel(1, 5)}
           />
           <Key
             keyType="regularKey"
@@ -756,6 +785,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 8))}
             centerPrimary={getCenterPrimary(1, 8, 0, 0, true)}
             centerExtra={getCenterExtra(1, 8, 0, 0, true)}
+            keyCode={getLabel(1, 8).keyCode}
+            selectedKey={getLabel(1, 8)}
           />
           <Key
             keyType="regularKey"
@@ -775,6 +806,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 9))}
             centerPrimary={getCenterPrimary(1, 9, 0, 0, true)}
             centerExtra={getCenterExtra(1, 9, 0, 0, true)}
+            keyCode={getLabel(1, 9).keyCode}
+            selectedKey={getLabel(1, 9)}
           />
           <Key
             keyType="regularKey"
@@ -794,6 +827,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 10))}
             centerPrimary={getCenterPrimary(1, 10, 0, 0, true)}
             centerExtra={getCenterExtra(1, 10, 0, 0, true)}
+            keyCode={getLabel(1, 10).keyCode}
+            selectedKey={getLabel(1, 10)}
           />
           <Key
             keyType="regularKey"
@@ -813,6 +848,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 11))}
             centerPrimary={getCenterPrimary(1, 11, 0, 0, true)}
             centerExtra={getCenterExtra(1, 11, 0, 0, true)}
+            keyCode={getLabel(1, 11).keyCode}
+            selectedKey={getLabel(1, 11)}
           />
           <Key
             keyType="regularKey"
@@ -832,6 +869,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 12))}
             centerPrimary={getCenterPrimary(1, 12, 0, 0, true)}
             centerExtra={getCenterExtra(1, 12, 0, 0, true)}
+            keyCode={getLabel(1, 12).keyCode}
+            selectedKey={getLabel(1, 12)}
           />
           <Key
             keyType="regularKey"
@@ -851,6 +890,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 13))}
             centerPrimary={getCenterPrimary(1, 13, 0, 0, true)}
             centerExtra={getCenterExtra(1, 13, 0, 0, true)}
+            keyCode={getLabel(1, 13).keyCode}
+            selectedKey={getLabel(1, 13)}
           />
           <Key
             keyType="regularKey"
@@ -870,6 +911,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 14))}
             centerPrimary={getCenterPrimary(1, 14, 0, 0, true)}
             centerExtra={getCenterExtra(1, 14, 0, 0, true)}
+            keyCode={getLabel(1, 14).keyCode}
+            selectedKey={getLabel(1, 14)}
           />
           <Key
             keyType="regularKey"
@@ -889,6 +932,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 15))}
             centerPrimary={getCenterPrimary(2, 15, 0, 0, true)}
             centerExtra={getCenterExtra(2, 15, 0, 0, true)}
+            keyCode={getLabel(2, 15).keyCode}
+            selectedKey={getLabel(2, 15)}
           />
           <Key
             keyType="regularKey"
@@ -908,6 +953,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 0))}
             centerPrimary={getCenterPrimary(2, 0, 0, 0, true)}
             centerExtra={getCenterExtra(2, 0, 0, 0, true)}
+            keyCode={getLabel(2, 0).keyCode}
+            selectedKey={getLabel(2, 0)}
           />
           <Key
             keyType="regularKey"
@@ -927,6 +974,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 1))}
             centerPrimary={getCenterPrimary(2, 1, 0, 0, true)}
             centerExtra={getCenterExtra(2, 1, 0, 0, true)}
+            keyCode={getLabel(2, 1).keyCode}
+            selectedKey={getLabel(2, 1)}
           />
           <Key
             keyType="regularKey"
@@ -946,6 +995,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 2))}
             centerPrimary={getCenterPrimary(2, 2, 0, 0, true)}
             centerExtra={getCenterExtra(2, 2, 0, 0, true)}
+            keyCode={getLabel(2, 2).keyCode}
+            selectedKey={getLabel(2, 2)}
           />
           <Key
             keyType="regularKey"
@@ -965,6 +1016,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 3))}
             centerPrimary={getCenterPrimary(2, 3, 0, 0, true)}
             centerExtra={getCenterExtra(2, 3, 0, 0, true)}
+            keyCode={getLabel(2, 3).keyCode}
+            selectedKey={getLabel(2, 3)}
           />
           <Key
             keyType="regularKey"
@@ -984,6 +1037,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 4))}
             centerPrimary={getCenterPrimary(2, 4, 0, 0, true)}
             centerExtra={getCenterExtra(2, 4, 0, 0, true)}
+            keyCode={getLabel(2, 4).keyCode}
+            selectedKey={getLabel(2, 4)}
           />
           <Key
             keyType="regularKey"
@@ -1003,6 +1058,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 5))}
             centerPrimary={getCenterPrimary(2, 5, 0, 0, true)}
             centerExtra={getCenterExtra(2, 5, 0, 0, true)}
+            keyCode={getLabel(2, 5).keyCode}
+            selectedKey={getLabel(2, 5)}
           />
           <Key
             keyType="regularKey"
@@ -1022,6 +1079,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 9))}
             centerPrimary={getCenterPrimary(2, 9, 0, 0, true)}
             centerExtra={getCenterExtra(2, 9, 0, 0, true)}
+            keyCode={getLabel(2, 9).keyCode}
+            selectedKey={getLabel(2, 9)}
           />
           <Key
             keyType="regularKey"
@@ -1041,6 +1100,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 10))}
             centerPrimary={getCenterPrimary(2, 10, 0, 0, true)}
             centerExtra={getCenterExtra(2, 10, 0, 0, true)}
+            keyCode={getLabel(2, 10).keyCode}
+            selectedKey={getLabel(2, 10)}
           />
           <Key
             keyType="regularKey"
@@ -1060,6 +1121,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 11))}
             centerPrimary={getCenterPrimary(2, 11, 0, 0, true)}
             centerExtra={getCenterExtra(2, 11, 0, 0, true)}
+            keyCode={getLabel(2, 11).keyCode}
+            selectedKey={getLabel(2, 11)}
           />
           <Key
             keyType="regularKey"
@@ -1079,6 +1142,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 12))}
             centerPrimary={getCenterPrimary(2, 12, 0, 0, true)}
             centerExtra={getCenterExtra(2, 12, 0, 0, true)}
+            keyCode={getLabel(2, 12).keyCode}
+            selectedKey={getLabel(2, 12)}
           />
           <Key
             keyType="regularKey"
@@ -1098,6 +1163,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 13))}
             centerPrimary={getCenterPrimary(2, 13, 0, 0, true)}
             centerExtra={getCenterExtra(2, 13, 0, 0, true)}
+            keyCode={getLabel(2, 13).keyCode}
+            selectedKey={getLabel(2, 13)}
           />
           <Key
             keyType="regularKey"
@@ -1117,6 +1184,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(2, 14))}
             centerPrimary={getCenterPrimary(2, 14, 0, 0, true)}
             centerExtra={getCenterExtra(2, 14, 0, 0, true)}
+            keyCode={getLabel(2, 14).keyCode}
+            selectedKey={getLabel(2, 14)}
           />
           <Key
             keyType="enterKey"
@@ -1136,6 +1205,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(1, 15))}
             centerPrimary={getCenterPrimary(1, 15, 0, 0, true)}
             centerExtra={getCenterExtra(1, 15, 0, 0, true)}
+            keyCode={getLabel(1, 15).keyCode}
+            selectedKey={getLabel(1, 15)}
           />
           <Key
             keyType="regularKey"
@@ -1155,6 +1226,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 0))}
             centerPrimary={getCenterPrimary(3, 0, 0, 0, true)}
             centerExtra={getCenterExtra(3, 0, 0, 0, true)}
+            keyCode={getLabel(3, 0).keyCode}
+            selectedKey={getLabel(3, 0)}
           />
           <Key
             keyType="regularKey"
@@ -1174,6 +1247,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 1))}
             centerPrimary={getCenterPrimary(3, 1, 0, 0, true)}
             centerExtra={getCenterExtra(3, 1, 0, 0, true)}
+            keyCode={getLabel(3, 1).keyCode}
+            selectedKey={getLabel(3, 1)}
           />
           <Key
             keyType="regularKey"
@@ -1193,6 +1268,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 2))}
             centerPrimary={getCenterPrimary(3, 2, 0, 0, true)}
             centerExtra={getCenterExtra(3, 2, 0, 0, true)}
+            keyCode={getLabel(3, 2).keyCode}
+            selectedKey={getLabel(3, 2)}
           />
           <Key
             keyType="regularKey"
@@ -1212,6 +1289,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 3))}
             centerPrimary={getCenterPrimary(3, 3, 0, 0, true)}
             centerExtra={getCenterExtra(3, 3, 0, 0, true)}
+            keyCode={getLabel(3, 3).keyCode}
+            selectedKey={getLabel(3, 3)}
           />
           <Key
             keyType="regularKey"
@@ -1231,6 +1310,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 4))}
             centerPrimary={getCenterPrimary(3, 4, 0, 0, true)}
             centerExtra={getCenterExtra(3, 4, 0, 0, true)}
+            keyCode={getLabel(3, 4).keyCode}
+            selectedKey={getLabel(3, 4)}
           />
           <Key
             keyType="regularKey"
@@ -1250,6 +1331,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 5))}
             centerPrimary={getCenterPrimary(3, 5, 0, 0, true)}
             centerExtra={getCenterExtra(3, 5, 0, 0, true)}
+            keyCode={getLabel(3, 5).keyCode}
+            selectedKey={getLabel(3, 5)}
           />
           <Key
             keyType="regularKey"
@@ -1269,6 +1352,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 6))}
             centerPrimary={getCenterPrimary(3, 6, 0, 0, true)}
             centerExtra={getCenterExtra(3, 6, 0, 0, true)}
+            keyCode={getLabel(3, 6).keyCode}
+            selectedKey={getLabel(3, 6)}
           />
           <Key
             keyType="regularKey"
@@ -1288,6 +1373,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 10))}
             centerPrimary={getCenterPrimary(3, 10, 0, 0, true)}
             centerExtra={getCenterExtra(3, 10, 0, 0, true)}
+            keyCode={getLabel(3, 10).keyCode}
+            selectedKey={getLabel(3, 10)}
           />
           <Key
             keyType="regularKey"
@@ -1307,6 +1394,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 11))}
             centerPrimary={getCenterPrimary(3, 11, 0, 0, true)}
             centerExtra={getCenterExtra(3, 11, 0, 0, true)}
+            keyCode={getLabel(3, 11).keyCode}
+            selectedKey={getLabel(3, 11)}
           />
           <Key
             keyType="regularKey"
@@ -1326,6 +1415,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 12))}
             centerPrimary={getCenterPrimary(3, 12, 0, 0, true)}
             centerExtra={getCenterExtra(3, 12, 0, 0, true)}
+            keyCode={getLabel(3, 12).keyCode}
+            selectedKey={getLabel(3, 12)}
           />
           <Key
             keyType="regularKey"
@@ -1345,6 +1436,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 13))}
             centerPrimary={getCenterPrimary(3, 13, 0, 0, true)}
             centerExtra={getCenterExtra(3, 13, 0, 0, true)}
+            keyCode={getLabel(3, 13).keyCode}
+            selectedKey={getLabel(3, 13)}
           />
           <Key
             keyType="regularKey"
@@ -1364,6 +1457,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 14))}
             centerPrimary={getCenterPrimary(3, 14, 0, 0, true)}
             centerExtra={getCenterExtra(3, 14, 0, 0, true)}
+            keyCode={getLabel(3, 14).keyCode}
+            selectedKey={getLabel(3, 14)}
           />
           <Key
             keyType="regularKey"
@@ -1383,6 +1478,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(3, 15))}
             centerPrimary={getCenterPrimary(3, 15, 0, 0, true)}
             centerExtra={getCenterExtra(3, 15, 0, 0, true)}
+            keyCode={getLabel(3, 15).keyCode}
+            selectedKey={getLabel(3, 15)}
           />
           <Key
             keyType="regularKey"
@@ -1402,6 +1499,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 0))}
             centerPrimary={getCenterPrimary(4, 0, 0, 0, true)}
             centerExtra={getCenterExtra(4, 0, 0, 0, true)}
+            keyCode={getLabel(4, 0).keyCode}
+            selectedKey={getLabel(4, 0)}
           />
           <Key
             keyType="regularKey"
@@ -1421,6 +1520,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 1))}
             centerPrimary={getCenterPrimary(4, 1, 0, 0, true)}
             centerExtra={getCenterExtra(4, 1, 0, 0, true)}
+            keyCode={getLabel(4, 1).keyCode}
+            selectedKey={getLabel(4, 1)}
           />
           <Key
             keyType="regularKey"
@@ -1440,6 +1541,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 2))}
             centerPrimary={getCenterPrimary(4, 2, 0, 0, true)}
             centerExtra={getCenterExtra(4, 2, 0, 0, true)}
+            keyCode={getLabel(4, 2).keyCode}
+            selectedKey={getLabel(4, 2)}
           />
           <Key
             keyType="regularKey"
@@ -1459,6 +1562,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 3))}
             centerPrimary={getCenterPrimary(4, 3, 0, 0, true)}
             centerExtra={getCenterExtra(4, 3, 0, 0, true)}
+            keyCode={getLabel(4, 3).keyCode}
+            selectedKey={getLabel(4, 3)}
           />
           <Key
             keyType="regularKey"
@@ -1478,6 +1583,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 4))}
             centerPrimary={getCenterPrimary(4, 4, 0, 0, true)}
             centerExtra={getCenterExtra(4, 4, 0, 0, true)}
+            keyCode={getLabel(4, 4).keyCode}
+            selectedKey={getLabel(4, 4)}
           />
           <Key
             keyType="regularKey"
@@ -1497,6 +1604,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 10))}
             centerPrimary={getCenterPrimary(4, 10, 0, 0, true)}
             centerExtra={getCenterExtra(4, 10, 0, 0, true)}
+            keyCode={getLabel(4, 10).keyCode}
+            selectedKey={getLabel(4, 10)}
           />
           <Key
             keyType="regularKey"
@@ -1516,6 +1625,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 11))}
             centerPrimary={getCenterPrimary(4, 11, 0, 0, true)}
             centerExtra={getCenterExtra(4, 11, 0, 0, true)}
+            keyCode={getLabel(4, 11).keyCode}
+            selectedKey={getLabel(4, 11)}
           />
           <Key
             keyType="regularKey"
@@ -1535,6 +1646,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 12))}
             centerPrimary={getCenterPrimary(4, 12, 0, 0, true)}
             centerExtra={getCenterExtra(4, 12, 0, 0, true)}
+            keyCode={getLabel(4, 12).keyCode}
+            selectedKey={getLabel(4, 12)}
           />
           <Key
             keyType="regularKey"
@@ -1554,6 +1667,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 13))}
             centerPrimary={getCenterPrimary(4, 13, 0, 0, true)}
             centerExtra={getCenterExtra(4, 13, 0, 0, true)}
+            keyCode={getLabel(4, 13).keyCode}
+            selectedKey={getLabel(4, 13)}
           />
           <Key
             keyType="regularKey"
@@ -1573,6 +1688,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 14))}
             centerPrimary={getCenterPrimary(4, 14, 0, 0, true)}
             centerExtra={getCenterExtra(4, 14, 0, 0, true)}
+            keyCode={getLabel(4, 14).keyCode}
+            selectedKey={getLabel(4, 14)}
           />
           <Key
             keyType="regularKey"
@@ -1592,6 +1709,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 15))}
             centerPrimary={getCenterPrimary(4, 15, 0, 0, true)}
             centerExtra={getCenterExtra(4, 15, 0, 0, true)}
+            keyCode={getLabel(4, 15).keyCode}
+            selectedKey={getLabel(4, 15)}
           />
 
           <Key
@@ -1612,6 +1731,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 5))}
             centerPrimary={getCenterPrimary(4, 5, 0, 0, true)}
             centerExtra={getCenterExtra(4, 5, 0, 0, true)}
+            keyCode={getLabel(4, 5).keyCode}
+            selectedKey={getLabel(4, 5)}
           />
 
           <Key
@@ -1632,6 +1753,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 6))}
             centerPrimary={getCenterPrimary(4, 6, 0, 0, true)}
             centerExtra={getCenterExtra(4, 6, 0, 0, true)}
+            keyCode={getLabel(4, 6).keyCode}
+            selectedKey={getLabel(4, 6)}
           />
           <Key
             keyType="regularKey"
@@ -1651,6 +1774,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 8))}
             centerPrimary={getCenterPrimary(4, 8, 0, 0, true)}
             centerExtra={getCenterExtra(4, 8, 0, 0, true)}
+            keyCode={getLabel(4, 8).keyCode}
+            selectedKey={getLabel(4, 8)}
           />
           <Key
             keyType="t8"
@@ -1670,6 +1795,8 @@ class KeymapISO extends React.Component {
             contrastText={getContrastText(getColor(4, 9))}
             centerPrimary={getCenterPrimary(4, 9, 0, 0, true)}
             centerExtra={getCenterExtra(4, 9, 0, 0, true)}
+            keyCode={getLabel(4, 9).keyCode}
+            selectedKey={getLabel(4, 9)}
           />
         </g>
         <g id="Areas">

@@ -36,7 +36,7 @@ const English = {
     USBdeviceConnected: "Dygma Device detected through USB!!",
     USBdeviceConnectedText: "A device with Dygma's ID's was recently connected to your computer",
     languageSaved: "Key picker language has been changed to ",
-    pairedSuccesfully: "Your device has ben succesfully re-paired",
+    pairedSuccesfully: "Your device has been succesfully re-paired",
     preferencesSaved: "Your preferences have been saved.",
     preferencesSavedBody: "",
     changesSaved: "Changes saved successfully",
@@ -123,6 +123,10 @@ const English = {
       exportToPdf: "Export layouts to pdf",
       layerToCopy: "You will copy the layout of this layer",
     },
+    clear: {
+      title: "Clear keymap",
+      clearLayer: "Layer",
+    },
     color: {
       color: "Color",
       colorEditor: "Color Editor",
@@ -130,7 +134,7 @@ const English = {
       selectedColor: "Selected color",
       editColor: "Edit Color",
       applyColor: "Apply color",
-      allKeys: "All Keys",
+      allKeys: "Keys",
       underglow: "Underglow",
       selectColorFirst: "Select a color first",
       selectColorFirstContent: "To use the color controls select a color to enable all buttons.",
@@ -194,7 +198,7 @@ const English = {
       recordDelays: "Record delays",
       recordMacro: "Record macro",
       recordingMacro: "Recording macro...",
-      recordingDiscard: "Discard record",
+      recordingDiscard: "Discard recording",
       recordingMessage:
         "Did you make a mistake? Don't worry, you can edit the created sequence after adding the recording to the timeline.",
       restore: "Restore All",
@@ -257,8 +261,9 @@ const English = {
       },
       clearLayer: {
         title: "Clear layer",
-        resetColors: "Reset underglow and key colors using the selection",
-        useNoKey: "Fill layer with NOKEY instead of TRANS key",
+        resetColors: "Reset underglow and key color with:",
+        useNoKey: "Fill layer with:",
+        chooseYourKeyboardSide: "Choose your side:",
       },
     },
     standardView: {
